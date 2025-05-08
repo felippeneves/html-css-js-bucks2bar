@@ -60,5 +60,3 @@ Made with 💻 by [Felippe Neves](https://github.com/felippeneves) as part of my
 ---
 
 Feel free to explore, fork the project, or open issues and suggestions!
-
-```
