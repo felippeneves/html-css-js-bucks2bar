@@ -1,4 +1,4 @@
-window.onload = () => {
+window.onload = async () => {
   const usernameInput = document.getElementById("username");
   const downloadButton = document.getElementById("download");
   const emailButton = document.getElementById("send-email");
@@ -119,6 +119,36 @@ window.onload = () => {
       },
     },
   });
+
+  // Fetch dummy data and populate inputs
+  try {
+    const response = await fetch("http://localhost:3000/get-data");
+    if (response.ok) {
+      const data = await response.json();
+      const months = [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+      ];
+      months.forEach((month, index) => {
+        document.getElementById(`${month}-income`).value = data.income[index];
+        document.getElementById(`${month}-expenses`).value = data.expenses[index];
+      });
+    } else {
+      console.error("Failed to fetch data from server.");
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 
   // Update chart data
   chartTab.addEventListener("click", () => {

@@ -19,7 +19,7 @@ app.post("/send-email", async (req, res) => {
   }
 
   console.log("Received email:", email);
-//   console.log("Received image data URL:", image);
+  //   console.log("Received image data URL:", image);
 
   try {
     // Configure nodemailer
@@ -55,6 +55,15 @@ app.post("/send-email", async (req, res) => {
     console.error("Error sending email:", error);
     res.status(500).send("Failed to send email.");
   }
+});
+
+// Dummy data endpoint
+app.get("/get-data", (req, res) => {
+  const data = {
+    income: [800, 900, 750, 850, 950, 700, 850, 900, 800, 950, 800, 900],
+    expenses: [400, 500, 350, 450, 500, 300, 450, 500, 400, 500, 450, 400],
+  };
+  res.status(200).json(data);
 });
 
 // Start server
